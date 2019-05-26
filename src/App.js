@@ -20,6 +20,17 @@ class App extends Component {
    }
  }
 
+onScoreUpdate = (playerIndex, scoreChange) => {
+  this.setState({
+    players: this.state.players.map((player, index) => {
+      if (index === playerIndex) {
+        return { ...player, score: player.score + scoreChange };
+      }
+      return player;
+    })
+  })
+}
+
  render() {
    return (
      <div className="App">
