@@ -24,20 +24,25 @@ onScoreUpdate = (playerIndex, scoreChange) => {
 }
 
 onPlayerAdd = (playerName) => {
-  const newPlayer = {
-    name: playerName,
-    score: 0,
-  }
-  this.setState({
-    players: [...this.state.players, newPlayer]
-  })
+	const newPlayer = {
+		name: playerName,
+		score: 0,
+	}
+	this.setState({
+		players: [...this.state.players, newPlayer]
+	})
+}
+
+onPlayerRemove = (playerIndex) => {
+	const newPlayersList = this.state.players.filter((removePlayer, index) => index !==playerIndex);
+	this.setState({players: newPlayersList});
 }
 
 render(){
 	return (
 		<div className="App">
 			<AddPlayer onPlayerAdd={this.onPlayerAdd} />
-			<PlayersList players={this.state.players} onScoreUpdate={this.onScoreUpdate}/>
+			<PlayersList players={this.state.players} onScoreUpdate={this.onScoreUpdate} onPlayerRemove={this.onPlayerRemove}/>
 		</div>
 		);
 	}
